@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-@Service
 public class OutroPedidoUseCase implements PedidoUseCaseFacade {
 
   private final PedidoPort pedidoPort;
