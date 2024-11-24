@@ -124,3 +124,4 @@ Para fazer o desprovisionamento da infra também existe uma action nesse reposit
 
 ### Consumindo a API
 Após a conclusão da action de deploy você precisará pegar o endereço do host no api gateway na sua conta AWS.
+
