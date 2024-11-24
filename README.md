@@ -71,14 +71,19 @@
 ### Serviços e Ferramentas AWS:
   - Amazon EC2: Para hospedar os microsserviços.
   - Amazon RDS: Banco de dados relacional.
-  - Network Load Balancer: Distribuição de tráfego para instâncias EC2.
+  - Amazon EKS: Serviço gerenciado do Kubernetes.
+  - Amazon ECR: registro de container.
+  - Amazon Api Gateway: serviço gerenciado de gateway.
+  - Amazon VPC: rede virtual.
+  - Amazon Lambda: execução de código serverless.
+  - Application Load Balancer: Distribuição de tráfego para instâncias EC2.
   - Docker: Containerização dos microsserviços.
 
 ### Descrição dos Componentes
 
   - Usuário: Interface do usuário para fazer pedidos, visualizar produtos, e acompanhar o status do pedido.
-  - Network Load Balancer: Distribui o tráfego de rede para as instâncias EC2, garantindo alta disponibilidade e balanceamento de carga.
-  - Amazon EC2 com Docker: Hospeda os microsserviços containerizados utilizando Docker
+  - Application Load Balancer: Distribui o tráfego de rede para as instâncias EC2, garantindo alta disponibilidade e balanceamento de carga.
+  - Amazon EKS: Hospeda os microsserviços 
   - Serviço de autenticação: Gerencia a autenticação e identificação dos clientes.
   - Serviço de pedido: Gerencia os pedidos dos clientes, atualiza o status do pedido e coordena com outros serviços.
   - Interface de pedido: Gerencia os produtos disponíveis para os clientes, incluindo nome, descrição, preço e categoria.

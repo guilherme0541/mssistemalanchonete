@@ -1,15 +1,15 @@
 name: Deploy terraform
 
 on:
-  workflow_dispatch:
-  push:
-    branches: [main]
-
   pull_request:
-    branches: [main]
+    types:
+      - closed
+    branches:
+      - main
 
 jobs:
   publish:
+    if: github.event.pull_request.merged == true
     name: Publish image
     runs-on: ubuntu-latest
 
@@ -81,7 +81,6 @@ jobs:
   deploy:
     name: Deploy
     needs: plan
-    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:
