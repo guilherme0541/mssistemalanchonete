@@ -6,15 +6,15 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.4</version>
+		<version>3.4.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
 	<groupId>com.fiap</groupId>
-	<artifactId>mssistemalanchonete</artifactId>
+	<artifactId>mssistemalanchoneteproduto</artifactId>
 	<version>1.0.0</version>
-	<name>mssistemalanchonete</name>
-	<description>Sistema lanchonete</description>
+	<name>mssistemalanchoneteproduto</name>
+	<description>Cadastro de produtos para o Sistema lanchonete</description>
 
 	<properties>
 		<org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
@@ -101,6 +101,7 @@
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
+			<version>2.2.220</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

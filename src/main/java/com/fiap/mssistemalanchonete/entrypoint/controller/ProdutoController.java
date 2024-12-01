@@ -2,9 +2,7 @@ package com.fiap.mssistemalanchonete.entrypoint.controller;
 
 import com.fiap.mssistemalanchonete.core.exception.ErrorResponse;
 import com.fiap.mssistemalanchonete.core.model.Produto;
-import com.fiap.mssistemalanchonete.core.usecase.PedidoUseCaseFacade;
 import com.fiap.mssistemalanchonete.core.usecase.ProdutoUseCaseFacade;
-import com.fiap.mssistemalanchonete.core.usecase.produto.ProdutoUseCase;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
