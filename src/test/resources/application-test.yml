@@ -6,6 +6,9 @@ spring:
       continue-on-error: true
   datasource:
     driverClassName: org.h2.Driver
+
+server:
+  port: 8099
   
 SPRING_DATASOURCE_USERNAME: postgres
 SPRING_DATASOURCE_PASSWORD: 1234
