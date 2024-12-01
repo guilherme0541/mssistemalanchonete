@@ -2,7 +2,10 @@ package com.fiap.mssistemalanchonete.entrypoint.controller;
 
 import com.fiap.mssistemalanchonete.core.exception.ErrorResponse;
 import com.fiap.mssistemalanchonete.core.model.Produto;
-import com.fiap.mssistemalanchonete.core.usecase.ProdutoUseCaseFacade;
+import com.fiap.mssistemalanchonete.core.usecase.AtualizarProdutoUseCaseFacade;
+import com.fiap.mssistemalanchonete.core.usecase.DeletarProdutoUseCaseFacade;
+import com.fiap.mssistemalanchonete.core.usecase.ConsultarProdutoUseCaseFacade;
+import com.fiap.mssistemalanchonete.core.usecase.SalvarProdutoUseCaseFacade;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -10,7 +13,14 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -18,15 +28,25 @@ import java.util.List;
 @RequestMapping("/produtos")
 public class ProdutoController {
 
-    @Autowired
-    ProdutoUseCaseFacade produtoUseCaseFacade;
+    private final SalvarProdutoUseCaseFacade salvarProdutoUseCaseFacade;
+    private final AtualizarProdutoUseCaseFacade atualizarProdutoUseCaseFacade;
+    private final DeletarProdutoUseCaseFacade deletarProdutoUseCaseFacade;
+    private final ConsultarProdutoUseCaseFacade consultarProdutoUseCaseFacade;
 
-    @Autowired
-    public ProdutoController(ProdutoUseCaseFacade produtoUseCaseFacade){
-        this.produtoUseCaseFacade = produtoUseCaseFacade;
-    }
+  public ProdutoController(
+    SalvarProdutoUseCaseFacade salvarProdutoUseCaseFacade,
+    AtualizarProdutoUseCaseFacade atualizarProdutoUseCaseFacade,
+    DeletarProdutoUseCaseFacade deletarProdutoUseCaseFacade,
+    ConsultarProdutoUseCaseFacade consultarProdutoUseCaseFacade
+  ) {
+    this.salvarProdutoUseCaseFacade = salvarProdutoUseCaseFacade;
+    this.atualizarProdutoUseCaseFacade = atualizarProdutoUseCaseFacade;
+    this.deletarProdutoUseCaseFacade = deletarProdutoUseCaseFacade;
+    this.consultarProdutoUseCaseFacade = consultarProdutoUseCaseFacade;
+  }
 
-    @Operation(
+
+  @Operation(
             description = "Cria novo produto",
             responses = {
                     @ApiResponse(responseCode = "201", description = "Produto criado com sucesso!"),
@@ -39,7 +59,7 @@ public class ProdutoController {
     public ResponseEntity<Produto> cadastrarProduto(
             @RequestBody final Produto produto) {
         return ResponseEntity.status(HttpStatusCode.valueOf(201))
-                .body(produtoUseCaseFacade.salvarProduto(produto));
+                .body(salvarProdutoUseCaseFacade.salvarProduto(produto));
     }
 
     @Operation(
@@ -55,7 +75,7 @@ public class ProdutoController {
     public ResponseEntity<Produto> atualizarProduto(
             @RequestBody final Produto produto,
             @PathVariable final String codigo) {
-        return ResponseEntity.ok(produtoUseCaseFacade.atualizarProduto(produto, codigo));
+        return ResponseEntity.ok(atualizarProdutoUseCaseFacade.atualizarProduto(produto, codigo));
     }
 
 
@@ -70,7 +90,7 @@ public class ProdutoController {
     )
     @DeleteMapping(value = "/{codigo}", produces = "application/json")
     public ResponseEntity<Object> deletarProduto(@PathVariable final String codigo) {
-        produtoUseCaseFacade.deletarProduto(codigo);
+        deletarProdutoUseCaseFacade.deletarProduto(codigo);
         return ResponseEntity.noContent().build();
     }
 
@@ -82,7 +102,7 @@ public class ProdutoController {
     )
     @GetMapping(value = "/{categoria}", produces = "application/json")
     public ResponseEntity<List<Produto>> consultarProdutoPorCategoria(@PathVariable final String categoria) {
-        return ResponseEntity.ok(produtoUseCaseFacade.consultarProdutoPorCategoria(categoria));
+        return ResponseEntity.ok(consultarProdutoUseCaseFacade.consultarProdutoPorCategoria(categoria));
     }
 
     @Operation(
@@ -93,6 +113,6 @@ public class ProdutoController {
     )
     @GetMapping(produces = "application/json")
     public ResponseEntity<List<Produto>> consultarTodosProdutos() {
-        return ResponseEntity.ok(produtoUseCaseFacade.consultarTodosProdutos());
+        return ResponseEntity.ok(consultarProdutoUseCaseFacade.consultarTodosProdutos());
     }
 }
