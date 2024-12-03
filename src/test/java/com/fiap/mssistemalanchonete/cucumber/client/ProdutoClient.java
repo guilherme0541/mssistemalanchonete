@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
-@FeignClient(value = "client", url = "http://localhost:8099/sistema-lanchonete/api/v1/produtos",  configuration = ClientConfiguration.class)
+@FeignClient(value = "client", url = "http://localhost:8099/sistema-lanchonete-produto/api/v1/produtos",  configuration = ClientConfiguration.class)
 public interface ProdutoClient {
 
   @RequestMapping(method = RequestMethod.POST)
