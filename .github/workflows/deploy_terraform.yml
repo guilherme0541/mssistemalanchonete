@@ -2,14 +2,14 @@ name: Deploy terraform
 
 on:
   pull_request:
-    types:
-      - closed
+    branches:
+      - main
+  push:
     branches:
       - main
 
 jobs:
   publish:
-    if: github.event.pull_request.merged == true
     name: Publish image
     runs-on: ubuntu-latest
 
@@ -81,6 +81,7 @@ jobs:
   deploy:
     name: Deploy
     needs: plan
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:

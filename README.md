@@ -22,11 +22,10 @@ Microsserviço responsável pela criação e autenticação dos clientes do sist
   - Docker: Containerização dos microsserviços.
 
 
-### Desenho de Arquitetura da Infraestrutura: 
-![Diagrama - Arquitetura](/assets/infra.png)
+### Desenho de Arquitetura da Infraestrutura da solução completa: 
+![Diagrama - Arquitetura](/assets/arch.jpeg)
 
 ### Banco de Dados: 
-![MER - Banco de dados](https://github.com/kelvinlins/mssistemalanchonete/blob/7708e866687a1babab1b8f074414e292b4ac2a81/assets/MER.png)
 
 Para a aplicação, foi utilizado como banco de dados uma instância do banco relacional **PostgreSQL** através do serviço **Amazon RDS**. A escolha desse serviço ocorreu principalmente pela praticidade na configuração e gerenciamento do banco de dados por parte da AWS, e por suas capacidades de alta disponibilidade e escalonamento, que são muito importantes em ambiente produtivo. A escolha do PostgreSQL como SGBD se deu por conta de sua característica estruturada (SQL), visto que os bancos de dados relacionais garantem consistência e integridade dos dados (ACID), que são características importantes nesse tipo de aplicação.
 
@@ -42,7 +41,7 @@ As actions desse repositório verificam a qualidade do código, compilam, builda
 Para executar os scripts diretamente do github, é necessário criar a variable `AWS_REGION` que é o código da região AWS e  as secrets `TSECRET, AWS_ACCESS_KEY_ID e AWS_SECRET_ACCESS_KEY`, respectivamente a secret usada no JWT, o ID e chave de acesso de um usuário AWS com permissões suficientes para criar e alterar os recursos citados acima.  
 
 ### Execução
-A automação ( **Deploy terraform** ) roda a partir de pull-requests para a `main`: na abertura ela publica a nova versão da aplicação e valida as alterações necessárias no ambiente, no merge ela aplica as alterações. Também é possivel acionar a automação manualmente no menu action do github.
+As automações rodam a partir de pull-requests para a `main`: na abertura verifica a qualidade do código, publica a nova versão da aplicação e valida as alterações necessárias no ambiente, no merge ela aplica as alterações. Também é possivel acionar a automação manualmente no menu action do github.
 Para fazer o desprovisionamento da infra também existe uma action nesse repositório: **Deploy terraform**. Ela precisa ser acionada manualmente e escolhendo "Yes_sure" mo menu suspenso o processo é iniciado.
 
 ### Consumindo a API
